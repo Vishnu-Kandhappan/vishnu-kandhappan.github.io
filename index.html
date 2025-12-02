@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vishnu Kandhappan — AIOps, Observability & SRE Automation</title>
+  <meta name="description" content="Vishnu Kandhappan — AIOps, Observability, SRE Automation, Cloud Platforms, Event Pipelines, Value Realization & Self-Healing Systems" />
+  <style>
+    :root{
+      --bg:#ffffff;
+      --panel:#fbfdff;
+      --muted:#707580;
+      --text:#071128;
+      --accent:#0b61ff; /* rich blue */
+      --accent-2:#05204a; /* deep navy */
+      --glass: rgba(11,97,255,0.06);
+      --radius:16px;
+      --shadow: 0 10px 30px rgba(7,17,40,0.08);
+      --soft-shadow: 0 6px 18px rgba(7,17,40,0.06);
+      --glass-2: linear-gradient(180deg, rgba(11,97,255,0.06), rgba(0,0,0,0.02));
+    }
+
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(11,97,255,0.04), transparent), var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:48px 20px}
+    .card{
+      width:100%;max-width:980px;background:var(--panel);border-radius:calc(var(--radius) + 8px);padding:36px;border:1px solid rgba(7,17,40,0.04);box-shadow:var(--shadow);position:relative;overflow:hidden
+    }
+
+    /* accent stripes */
+    .card:before{content:'';position:absolute;left:-120px;top:-40px;width:420px;height:420px;background:radial-gradient(circle at 40% 30%, rgba(11,97,255,0.12), transparent 40%);filter:blur(18px);pointer-events:none}
+
+    header.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .logo{width:46px;height:46px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;letter-spacing:0.6px;box-shadow:var(--soft-shadow)}
+    .brand h1{font-size:0.95rem;margin:0;letter-spacing:0.02em}
+    .brand p{font-size:0.72rem;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:0.14em}
+
+    nav.top-nav{display:flex;gap:10px;align-items:center}
+    nav.top-nav a{font-size:0.86rem;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:999px;border:1px solid transparent;transition:all .18s}
+    nav.top-nav a:hover{color:var(--accent);background:var(--glass);border-color:rgba(11,97,255,0.08)}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr;gap:18px;align-items:center}
+    @media(min-width:920px){.hero{grid-template-columns:1fr 360px;gap:28px}}
+
+    .hero-left{padding-right:6px}
+    .kicker{display:inline-block;background:linear-gradient(90deg,rgba(11,97,255,0.08),rgba(5,32,74,0.04));color:var(--accent);font-weight:600;padding:6px 10px;border-radius:999px;font-size:0.78rem;margin-bottom:12px}
+
+    .title{font-size:clamp(1.7rem,3.6vw,2.6rem);line-height:1.03;font-weight:700;text-transform:uppercase;color:var(--accent-2);margin-bottom:10px;opacity:0;transform:translateY(12px);animation:fadeUp .7s .12s forwards}
+    .subtitle{color:var(--muted);font-size:0.96rem;max-width:46rem;margin-bottom:14px}
+
+    .pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .pill{background:white;border:1px solid rgba(7,17,40,0.04);padding:8px 12px;border-radius:999px;font-weight:600;color:var(--accent);font-size:0.79rem;box-shadow:0 6px 16px rgba(11,97,255,0.03)}
+
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .links a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid rgba(7,17,40,0.04);text-decoration:none;color:var(--accent-2);font-weight:600;transition:transform .14s ease,box-shadow .14s}
+    .links a:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(11,97,255,0.08)}
+
+    /* right column profile */
+    .profile-card{background:linear-gradient(180deg,#ffffff, #fbfdff);border-radius:14px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:12px;border:1px solid rgba(7,17,40,0.04);box-shadow:var(--soft-shadow);position:relative}
+
+    .avatar-wrap{width:140px;height:140px;border-radius:999px;overflow:hidden;border:6px solid #ffffff;box-shadow:0 10px 30px rgba(7,17,40,0.12);background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center}
+    .avatar{width:100%;height:100%;object-fit:cover;display:block}
+    .name{font-size:1.02rem;font-weight:700;color:var(--accent-2)}
+    .role{font-size:0.86rem;color:var(--muted)}
+    .contact-links{display:flex;gap:8px;margin-top:6px}
+    .social{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(11,97,255,0.06);color:var(--accent);font-weight:600;text-decoration:none;border:1px solid rgba(11,97,255,0.08)}
+
+    /* sections */
+    .sections{display:grid;gap:14px;margin-top:14px}
+    .section{padding:16px;border-radius:12px;background:white;border:1px solid rgba(7,17,40,0.04);box-shadow:0 6px 18px rgba(7,17,40,0.04);opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+    .section.visible{opacity:1;transform:translateY(0)}
+    .section h3{margin-bottom:8px;font-size:0.96rem;color:var(--accent-2);text-transform:uppercase;letter-spacing:0.08em}
+    .section p{color:var(--muted);font-size:0.92rem}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
+    .card-mini{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fbfdff,#fff);border:1px solid rgba(7,17,40,0.03)}
+
+    footer{margin-top:18px;text-align:right;color:var(--muted);font-size:0.82rem}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+
+    /* animations */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+    /* reduce motion */
+    @media (prefers-reduced-motion:reduce){.title,.section{animation:none;transition:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main class="card" id="main">
+      <header class="top">
+        <div class="brand">
+          <div class="logo">VK</div>
+          <div>
+            <h1>Vishnu Kandhappan</h1>
+            <p>AIOps · Observability · SRE Automation</p>
+          </div>
+        </div>
+
+        <nav class="top-nav" aria-label="Primary">
+          <a href="#focus">Focus</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Executive Summary</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="about">
+        <div class="hero-left">
+          <div class="kicker">AIOps • Observability • SRE • Automation • Value Realization</div>
+          <h2 class="title">I design automation-first observability platforms that prove value.</h2>
+          <p class="subtitle">
+            I focus on turning real user problems into rapid prototypes and production-ready patterns for AIOps, SRE, and observability.
+            My public work across Medium, GitHub, and LinkedIn distills complex topics—GenAI-assisted RCA, event pipelines, self-healing automation,
+            and telemetry-first architectures—into actionable practices that drive clear value realization for engineering and operations teams.
+          </p>
+
+          <div class="pills">
+            <div class="pill">AIOps & Observability Engineering</div>
+            <div class="pill">SRE & Self-Healing Automation</div>
+            <div class="pill">Cloud & Kubernetes Platforms</div>
+            <div class="pill">Value Realization for Platforms</div>
+          </div>
+
+          <div class="links">
+            <a class="link-linkedin" href="https://www.linkedin.com/in/vishnu-k-b6632169" target="_blank" rel="noreferrer">
+              ↗ LinkedIn</a>
+            <a href="https://github.com/Vishnu-Kandhappan" target="_blank" rel="noreferrer">💻 GitHub</a>
+            <a href="https://medium.com/@vishnukandhappan_18621" target="_blank" rel="noreferrer">✍ Medium Blogs</a>
+          </div>
+        </div>
+
+        <aside class="profile-card" aria-label="Profile card">
+          <div class="avatar-wrap" aria-hidden="false">
+            <img
+              class="avatar"
+              src="assets/me.png"
+              alt="Vishnu Kandhappan"
+              onerror="this.src='data:image/svg+xml;utf8,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=300 height=300&gt;&lt;rect width=100% height=100% fill=&#39;%230b61ff&#39; /&gt;&lt;text x=50% y=52% font-size=96 text-anchor=middle fill=&#39;%23fff&#39; font-family=Arial,Helvetica,sans-serif&gt;VK&lt;/text&gt;&lt;/svg&gt;'"
+            />
+          </div>
+          <div class="name">Vishnu Kandhappan</div>
+          <div class="role">Focusing on — AIOps, Observability & SRE Automation</div>
+
+          <div class="contact-links">
+            <a class="social" href="mailto:vishnukandhappan@gmail.com">Email</a>
+            <a class="social" href="https://www.linkedin.com/in/vishnu-k-b6632169" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </aside>
+      </section>
+
+      <div class="sections">
+        <section class="section" id="focus">
+          <h3>Focus Areas</h3>
+          <p>
+            AIOps-driven incident reduction, telemetry platforms at scale, Kubernetes/OpenShift observability, self-healing automation using Python & Ansible,
+            event-ingestion frameworks with Kafka/NiFi, GenAI-powered RCA and ChatOps, SLI/SLO design, and architectures that make reliability
+            and value realization measurable across hybrid cloud and telecom environments.
+          </p>
+        </section>
+
+        <section class="section" id="projects">
+          <h3>Public Work & Labs</h3>
+          <p class="muted">
+            A snapshot of how I think in public — hands-on labs, reference patterns, and long-form writing focused on observability, AIOps automation,
+            SRE practices, and value realization.
+          </p>
+          <div class="grid">
+            <div class="card-mini">
+              <strong>Medium · Observability & AIOps</strong>
+              <div class="muted" style="margin-top:6px">
+                Deep dives on telemetry-first design, and practical value realization from monitoring and AIOps platforms.
+              </div>
+            </div>
+            <div class="card-mini">
+              <strong>GitHub · Automation & Prototypes</strong>
+              <div class="muted" style="margin-top:6px">
+                Repositories for event pipelines, self-healing workflows, SRE utilities, and rapid prototypes that convert user problems into working tools.
+              </div>
+            </div>
+            <div class="card-mini">
+              <strong>LinkedIn · Signals & Patterns</strong>
+              <div class="muted" style="margin-top:6px">
+                Short-form perspectives on SRE, AIOps, observability strategy, and stakeholder-ready narratives for platform value realization.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="skills">
+          <h3>Technical Skills</h3>
+          <div class="grid">
+            <div class="card-mini">
+              <strong>Cloud</strong>
+              <div class="muted">AWS, Azure, GCP</div>
+            </div>
+            <div class="card-mini">
+              <strong>Containers & Platforms</strong>
+              <div class="muted">Kubernetes, OpenShift, Docker, Service Mesh (Istio)</div>
+            </div>
+            <div class="card-mini">
+              <strong>Monitoring, APM & AIOps</strong>
+              <div class="muted">
+                Prometheus, Grafana, Dynatrace, ELK, Sciencelogic, OpenTelemetry, Watson AIOps and not limited
+              </div>
+            </div>
+            <div class="card-mini">
+              <strong>Automation & AI</strong>
+              <div class="muted">
+                Python, Ansible, ChatOps, REST APIs, Pytorch
+              </div>
+            </div>
+            <div class="card-mini">
+              <strong>Data & Event Pipelines</strong>
+              <div class="muted">
+                Kafka, NiFi, SQL/NoSQL, high-throughput ingestion for observability and AIOps use cases
+              </div>
+            </div>
+            <div class="card-mini">
+              <strong>Architecture & Frameworks</strong>
+              <div class="muted">
+                SRE practices, TOGAF, secure-by-design automation patterns
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="experience">
+          <h3>Executive Summary</h3>
+          <p class="muted">
+            I help engineering and operations teams move from “more dashboards and alerts” to observability and AIOps platforms that clearly prove value.
+            My work combines SRE principles, event-driven architectures, and self-healing automation with a strong bias for rapid prototyping:
+            take a real user problem, experiment quickly, and turn the successful pattern into repeatable value realization.
+            Medium articles, GitHub labs, and LinkedIn narratives together form a public record of how I think about reliability, automation,
+            and the business impact of modern platforms.
+          </p>
+        </section>
+      </div>
+
+      <footer>I work on Simplicity first principle, focused on the engineering and value realization behind AIOps, observability, and SRE automation.</footer>
+    </main>
+  </div>
+
+  <script>
+    // Reveal sections on scroll
+    (function(){
+      const sections = document.querySelectorAll('.section');
+      if(!('IntersectionObserver' in window)){
+        sections.forEach(s=>s.classList.add('visible'));return
+      }
+      const obs=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('visible');
+            obs.unobserve(e.target)
+          }
+        })
+      },{threshold:0.18});
+      sections.forEach(s=>obs.observe(s));
+    })();
+
+    // Small animation: fade in other elements
+    document.addEventListener('DOMContentLoaded',()=>{
+      document.querySelectorAll('nav.top-nav a').forEach((a,i)=>{
+        a.style.opacity=0;
+        a.style.transform='translateY(6px)';
+        setTimeout(()=>{
+          a.style.transition='all 360ms ease';
+          a.style.opacity=1;
+          a.style.transform='translateY(0)';
+        },120*i)
+      });
+    });
+  </script>
+</body>
+</html>
