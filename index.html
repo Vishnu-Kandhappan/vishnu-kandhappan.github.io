@@ -88,6 +88,18 @@
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
     .card-mini{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fbfdff,#fff);border:1px solid rgba(7,17,40,0.03)}
 
+    /* featured repositories */
+    .subhead{margin-top:16px;font-size:0.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;font-weight:700}
+    .repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:10px}
+    .repo-card{display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:12px;background:linear-gradient(180deg,#fbfdff,#fff);border:1px solid rgba(7,17,40,0.05);box-shadow:var(--soft-shadow)}
+    .repo-card h4{font-size:0.95rem;color:var(--accent-2)}
+    .repo-card p{font-size:0.86rem;color:var(--muted);flex:1}
+    .tags{display:flex;gap:6px;flex-wrap:wrap}
+    .tag{font-size:0.7rem;font-weight:600;color:var(--accent);background:var(--glass);padding:3px 8px;border-radius:999px}
+    .repo-links{display:flex;gap:8px;flex-wrap:wrap}
+    .repo-links a{font-size:0.82rem;font-weight:600;color:var(--accent);text-decoration:none;padding:6px 10px;border-radius:8px;border:1px solid rgba(11,97,255,0.12);background:white}
+    .repo-links a:hover{background:var(--glass)}
+
     footer{margin-top:18px;text-align:right;color:var(--muted);font-size:0.82rem}
 
     /* small helpers */
@@ -180,6 +192,45 @@
             A snapshot of how I think in public — hands-on labs, reference patterns, and long-form writing focused on observability, AIOps automation,
             SRE practices, and value realization.
           </p>
+          <div class="subhead">Featured Repositories</div>
+          <div class="repo-grid">
+            <article class="repo-card">
+              <h4>OTel PII Redaction Pipeline</h4>
+              <p>Log pipeline where Envoy enforces API-key authorization and routes by path, and an OpenTelemetry Collector router splits records by severity into a PII-redaction agent or a noise-filtering agent. Self-observable through collector metrics, zPages, and Envoy admin stats.</p>
+              <div class="tags"><span class="tag">OpenTelemetry</span><span class="tag">Envoy</span><span class="tag">Fluentd</span><span class="tag">Elasticsearch</span><span class="tag">Kubernetes</span></div>
+              <div class="repo-links">
+                <a href="https://vishnu-kandhappan.github.io/OTEL_PII_Redaction/" target="_blank" rel="noreferrer">Live diagram</a>
+                <a href="https://github.com/Vishnu-Kandhappan/OTEL_PII_Redaction" target="_blank" rel="noreferrer">Repository</a>
+              </div>
+            </article>
+            <article class="repo-card">
+              <h4>OpenTelemetry Analyzer</h4>
+              <p>Browser-based tool that crawls the OpenTelemetry Collector Contrib repository and turns component metric metadata into an exportable dashboard.</p>
+              <div class="tags"><span class="tag">OpenTelemetry</span><span class="tag">Collector Contrib</span><span class="tag">Metrics</span></div>
+              <div class="repo-links">
+                <a href="https://vishnu-kandhappan.github.io/OpenTelemetry-Analyzer/" target="_blank" rel="noreferrer">Open tool</a>
+                <a href="https://github.com/Vishnu-Kandhappan/OpenTelemetry-Analyzer" target="_blank" rel="noreferrer">Repository</a>
+              </div>
+            </article>
+            <article class="repo-card">
+              <h4>Infrastructure as Code Guide</h4>
+              <p>Practical Terraform guide covering project layout across AWS, Azure, and GCP, the local developer workflow, remote state and governance, policy and cost checks, drift detection, brownfield imports, and teardown.</p>
+              <div class="tags"><span class="tag">Terraform</span><span class="tag">Checkov</span><span class="tag">TFLint</span><span class="tag">Terratest</span><span class="tag">Infracost</span></div>
+              <div class="repo-links">
+                <a href="https://github.com/Vishnu-Kandhappan/Infra-As-Code" target="_blank" rel="noreferrer">Repository</a>
+              </div>
+            </article>
+            <article class="repo-card">
+              <h4>Chaos Engineering Lab</h4>
+              <p>Hands-on guide to running chaos experiments against the Hipster Shop microservices demo on Kubernetes, covering pod kills, network delay, CPU and memory stress, DNS errors, and clock skew, to validate retries, timeouts, autoscaling, and graceful degradation.</p>
+              <div class="tags"><span class="tag">Chaos Mesh</span><span class="tag">LitmusChaos</span><span class="tag">Helm</span><span class="tag">Prometheus</span><span class="tag">Grafana</span></div>
+              <div class="repo-links">
+                <a href="https://github.com/Vishnu-Kandhappan/ChaosEngineering" target="_blank" rel="noreferrer">Repository</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="subhead">Where I Publish</div>
           <div class="grid">
             <div class="card-mini">
               <strong>Medium · Observability & AIOps</strong>
@@ -216,8 +267,12 @@
             <div class="card-mini">
               <strong>Monitoring, APM & AIOps</strong>
               <div class="muted">
-                Prometheus, Grafana, Dynatrace, ELK, Sciencelogic, OpenTelemetry, Watson AIOps and not limited
+                Prometheus, Grafana, Dynatrace, ELK, Sciencelogic, OpenTelemetry (Collector, pipelines, PII redaction), Envoy, Watson AIOps and not limited
               </div>
+            </div>
+            <div class="card-mini">
+              <strong>IaC & Resilience Engineering</strong>
+              <div class="muted">Terraform, Chaos Mesh, LitmusChaos, Helm, policy-as-code and drift detection</div>
             </div>
             <div class="card-mini">
               <strong>Automation & AI</strong>
